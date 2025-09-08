@@ -1,6 +1,17 @@
 import { bootstrapApplication } from '@angular/platform-browser';
-import { appConfig } from './app/app.config';
+import { provideEchartsCore } from 'ngx-echarts';
 import { App } from './app/app';
+import { SensorsChart } from './app/components/sensors-chart/sensors-chart';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
-bootstrapApplication(App, appConfig)
-  .catch((err) => console.error(err));
+bootstrapApplication(App, {
+  providers: [
+    provideEchartsCore({ echarts: () => import('echarts') }),
+    
+  ]
+});
+/*
+bootstrapApplication(SensorsChart, {
+  providers: [provideAnimations()]
+})
+.catch(err => console.error(err));*/

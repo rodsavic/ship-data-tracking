@@ -1,0 +1,11 @@
+<div class="dashboard">
+  <!-- Gauge -->
+  <div echarts [options]="gaugeOption" class="chart"></div>
+
+  <!-- Datos adicionales -->
+  <div class="stats">
+    <div><b>Potencia Motor:</b> {{ potencia }} kW</div>
+    <div><b>RPM Hélice:</b> {{ rpm }} rpm</div>
+    <div><b>Empuje Forward:</b> {{ empuje }} kN</div>
+  </div>
+</div>

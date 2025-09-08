@@ -1,1 +1,17 @@
-<app-ship-tracking></app-ship-tracking>
+
+<div class="grid-container">
+  <app-ship-tracking></app-ship-tracking>
+  
+    <app-mapbox></app-mapbox>
+  
+  <app-google-maps></app-google-maps>
+  <div class="grid-item">
+    
+    <app-sensors-chart></app-sensors-chart>
+    
+  </div>
+</div>
+
+<script async
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-pXVwfTJ-0R_-CI87_TwCGfvR-vmqVMs&libraries=geometry,places">
+</script>
