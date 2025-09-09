@@ -1,0 +1,167 @@
+<div class="dashboard-container">
+    <!-- Header -->
+    <header class="dashboard-header d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+            <div class="logo-container me-3">
+                <i class="fas fa-ship text-white fs-3"></i>
+            </div>
+            <h1 class="dashboard-title mb-0">Centro Integral de Operaciones - Navíos</h1>
+        </div>
+
+        <div class="d-flex gap-2">
+            <div class="status-badge sistemas-online">
+                <i class="fas fa-globe me-1"></i>
+                Sistemas Online
+            </div>
+
+            <div class="status-badge alertas">
+                <i class="fas fa-exclamation-triangle me-1"></i>
+                {{ alertas }} Alertas
+            </div>
+
+            <div class="status-badge sensores">
+                <i class="fas fa-tachometer-alt me-1"></i>
+                {{ sensoresActivos }}/{{ totalSensores }} Sensores
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <nav class="dashboard-nav">
+        <ul class="nav nav-tabs custom-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" href="#sensores">
+                    <i class="fas fa-satellite-dish me-2"></i>
+                    Sensores
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Sidebar -->
+    <aside class="dashboard-sidebar">
+        <nav class="sidebar-nav">
+            <a href="#" class="sidebar-link">
+                <i class="fas fa-home"></i>
+            </a>
+            <a href="#" class="sidebar-link">
+                <i class="fas fa-signal"></i>
+            </a>
+            <a href="#" class="sidebar-link active">
+                <i class="fas fa-satellite"></i>
+            </a>
+            <a href="#" class="sidebar-link">
+                <i class="fas fa-th"></i>
+            </a>
+        </nav>
+    </aside>
+
+    <main class="dashboard-content">
+        <div class="content-section">
+            <!-- Filtros -->
+            <div class="filters mb-3">
+                <label for="buque">Buque:</label>
+                <select id="buque" [(ngModel)]="buqueSeleccionado" class="form-select d-inline-block w-auto mx-2">
+                    <option value="">Todos</option>
+                    <option *ngFor="let buque of buques" [value]="buque">{{ buque }}</option>
+                </select>
+
+                <label for="tipo">Tipo de Sensor:</label>
+                <select id="tipo" [(ngModel)]="tipoSensorSeleccionado" class="form-select d-inline-block w-auto mx-2">
+                    <option value="">Todos</option>
+                    <option *ngFor="let tipo of tiposSensores" [value]="tipo">{{ tipo }}</option>
+                </select>
+            </div>
+            <div class="table-container">
+                <table class="table custom-table">
+                    <thead class="text-center">
+                        <tr>
+                            <th>Identificador</th>
+                            <th>Tipo</th>
+                            <th>Métrica</th>
+                            <th>Valor</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (sensor of sensores; track sensor.nombre) {
+                        <tr class="table-row" [ngClass]="{ 'fuera-rango': fueraDeRango(sensor) }">
+                            <td class="sensor-name">{{ sensor.nombre }}</td>
+                            <td class="sensor-type">{{ sensor.tipo }}</td>
+                            <td class="sensor-metrica">{{ sensor.metrica }}</td>
+                            <td class="sensor-valor">{{ sensor.valor }}</td>
+                            <td>
+                                <span class="status-indicator"
+                                    [class]="sensor.estado === 'Activo' ? 'status-active' : 'status-inactive'">
+                                    {{ sensor.estado }}
+                                </span>
+                            </td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn btn-sm me-2 btn-outline-primary"
+                                        (click)="configurarSensor(sensor)">
+                                        <i class="fas fa-cog"></i>
+                                    </button>
+                                    <button class="btn btn-sm"
+                                        [class]="sensor.estado === 'Activo' ? 'btn-outline-warning' : 'btn-outline-success'"
+                                        (click)="desactivarSensor(sensor)">
+                                        <i
+                                            [class]="sensor.estado === 'Activo' ? 'fas fa-power-off' : 'fas fa-play'"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+
+</div>
+
+<div class="modal fade show d-block" *ngIf="mostrarModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Editar Sensor</h5>
+                <button type="button" class="btn-close" (click)="cerrarModal()"></button>
+            </div>
+            <div class="modal-body" *ngIf="sensorEditando">
+                <label>Nombre:</label>
+                <input type="text" [(ngModel)]="sensorEditando.nombre" class="form-control mb-2">
+
+                <label>Tipo:</label>
+                <input type="text" [(ngModel)]="sensorEditando.tipo" class="form-control mb-2" disabled>
+
+                <label>Métrica:</label>
+                <input type="text" [(ngModel)]="sensorEditando.metrica" class="form-control mb-2" disabled>
+
+                <label>Valor:</label>
+                <input type="text" [(ngModel)]="sensorEditando.valor" class="form-control mb-2">
+
+                <label>Estado:</label>
+                <select [(ngModel)]="sensorEditando.estado" class="form-select mb-3">
+                    <option value="Activo">Activo</option>
+                    <option value="Inactivo">Inactivo</option>
+                </select>
+
+                @if (esCuantitativo(sensorEditando)) {
+                <label>Mínimo permitido:</label>
+                <input type="number" [(ngModel)]="sensorEditando.min" class="form-control mb-2">
+
+                <label>Máximo permitido:</label>
+                <input type="number" [(ngModel)]="sensorEditando.max" class="form-control mb-2">
+                }
+
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-success" (click)="guardarSensor()">Guardar</button>
+                <button class="btn btn-secondary" (click)="cerrarModal()">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-backdrop fade show" *ngIf="mostrarModal"></div>

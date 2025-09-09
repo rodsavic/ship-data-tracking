@@ -1,9 +1,9 @@
 import { Component, signal } from '@angular/core';
-import { SensorsChart } from "./components/sensors-chart/sensors-chart";
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [ SensorsChart],
+  imports: [RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
