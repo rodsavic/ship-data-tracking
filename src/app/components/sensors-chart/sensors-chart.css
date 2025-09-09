@@ -1,0 +1,29 @@
+.controls {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+select {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+:host {
+  display: block;
+  background-color: #1C0A43;
+  min-height: 100vh; /* ocupa toda la altura */
+  color: #fff;
+  padding: 1rem;
+}
+
+.form-select {
+  background-color: #2C2F48;
+  color: #fff;
+  border: 1px solid #555;
+}
+
+.form-select option {
+  background-color: #1C0A43;
+  color: #fff;
+}
