@@ -1,0 +1,30 @@
+<section class="dashboard-container">
+    <app-header></app-header>
+    <app-aside-nav></app-aside-nav>
+    <main class="dashboard-content">
+        <div class="content-section">
+            <!-- Filtros -->
+            <div class="filters mb-3">
+                <div class="d-flex align-items-center gap-2">
+                    <select class="form-select" aria-label="Default select example">      
+                        <option *ngFor="let barco of buques" [value]="barco">{{ barco }}</option>
+                    </select>
+                </div>
+
+             <button class="btn btn-success">
+  <i class="fas fa-plus"></i> AGREGAR PANEL
+</button>
+
+            </div>
+            <div class="grid-container">
+                <app-ship-tracking></app-ship-tracking>
+                <app-dashboard-temperature></app-dashboard-temperature>
+                <app-dashboard-nivel-tanque></app-dashboard-nivel-tanque>
+                <app-dashboard-gases-de-escape-nox></app-dashboard-gases-de-escape-nox>
+                <app-dashboard-gases-de-escape-sox></app-dashboard-gases-de-escape-sox>
+                <app-dashboard-camaras-buque></app-dashboard-camaras-buque>
+            </div>
+        </div>
+
+    </main>
+</section>

@@ -1,0 +1,58 @@
+/* Header Styles */
+.dashboard-header {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo-container {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  padding: 0.5rem;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dashboard-title {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Status Badges */
+.status-badge {
+  background: rgba(17, 4, 4, 0.455);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.status-badge:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.status-badge.sistemas-online {
+  color: #4ade80;
+}
+
+.status-badge.alertas {
+  color: #f59e0b;
+}
+
+.status-badge.sensores {
+  color: #06b6d4;
+}

@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { HeaderComponent } from '../header/header.component';
+import { AsideNavComponent } from "../aside-nav/aside-nav.component";
 
 interface Sensor {
   id: number;
@@ -16,7 +18,7 @@ interface Sensor {
 
 @Component({
   selector: 'app-sensors-table',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, HeaderComponent, AsideNavComponent],
   templateUrl: './sensors-table.html',
   styleUrl: './sensors-table.css'
 })

@@ -1,0 +1,29 @@
+<!-- Sidebar -->
+<aside class="dashboard-sidebar">
+  <nav class="sidebar-nav">
+    <a 
+      [routerLink]="'/dashboard'" 
+      routerLinkActive="active" 
+      class="sidebar-link" 
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      <i class="fas fa-home"></i>
+    </a>
+
+    <a 
+      [routerLink]="'/sensors-graph'" 
+      routerLinkActive="active" 
+      class="sidebar-link"
+    >
+      <i class="fas fa-satellite"></i>
+    </a>
+
+    <a 
+      [routerLink]="'/sensors-table'" 
+      routerLinkActive="active" 
+      class="sidebar-link"
+    >
+      <i class="fas fa-th"></i>
+    </a>
+  </nav>
+</aside>

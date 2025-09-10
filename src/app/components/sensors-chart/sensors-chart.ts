@@ -2,6 +2,8 @@ import { NgFor } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgxEchartsModule } from 'ngx-echarts';
 import { MOCK_SENSORS, RegistroSensor } from '../../sensors-mock';
+import { HeaderComponent } from "../header/header.component";
+import { AsideNavComponent } from "../aside-nav/aside-nav.component";
 
 
 interface SensorData {
@@ -11,7 +13,7 @@ interface SensorData {
 
 @Component({
   selector: 'app-sensors-chart',
-  imports: [NgxEchartsModule, NgFor],
+  imports: [NgxEchartsModule, NgFor, HeaderComponent, AsideNavComponent],
   templateUrl: './sensors-chart.html',
   styleUrl: './sensors-chart.css'
 })

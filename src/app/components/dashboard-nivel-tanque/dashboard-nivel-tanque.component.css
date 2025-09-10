@@ -1,0 +1,27 @@
+.gauges-container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 20px 0;
+}
+
+.gauge-wrapper {
+  flex: 1; /* cada gauge ocupa 1/3 del contenedor */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.gauge {
+  width: 100%;  /* ocupa 80% del ancho de su columna */
+  height: auto;
+}
+
+.label {
+  color: #fff;
+  margin-top: 10px;
+  font-size: 14px;
+  text-align: center;
+}

@@ -1,0 +1,16 @@
+<div class="gauges-container rounded">
+  <div class="gauge-wrapper">
+    <div echarts [options]="tankOption" [merge]="tankUpdate" class="gauge rounded"></div>
+    <div class="label fs-4">Tanque</div>
+  </div>
+
+  <div class="gauge-wrapper">
+    <div echarts [options]="hydraulicOption" [merge]="hydraulicUpdate" class="gauge rounded"></div>
+    <div class="label fs-4">Aceite Hidráulico</div>
+  </div>
+
+  <div class="gauge-wrapper">
+    <div echarts [options]="engineOption" [merge]="engineUpdate" class="gauge rounded"></div>
+    <div class="label fs-4">Aceite Motor</div>
+  </div>
+</div>

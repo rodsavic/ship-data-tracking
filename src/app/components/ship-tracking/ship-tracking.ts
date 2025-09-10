@@ -58,7 +58,7 @@ export class ShipTracking {
     const companyControl = new L.Control({ position: 'bottomright' });
     companyControl.onAdd = () => {
       const div = L.DomUtil.create('div', 'company-info');
-      div.innerHTML = `© Rousseaux EAS 2025`;
+      div.innerHTML = `© NAVIOS EAS 2025`;
       return div;
     };
     companyControl.addTo(this.map);
