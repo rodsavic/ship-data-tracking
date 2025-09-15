@@ -1,57 +1,117 @@
 /* Dashboard Container */
 .dashboard-container {
   min-height: 100vh;
-  background: linear-gradient(135deg, #375AB2 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #375AB2 0%, #1C0A43 100%);
   color: white;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   position: relative;
 }
 
-/* Main Content */
 .dashboard-content {
   margin-left: 70px;
   padding: 2rem;
   min-height: calc(100vh - 120px);
 }
 
-.content-section {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-  padding: 1.5rem;
-}
-
-
-.grid-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(2, 1fr);  
-  gap: 16px;
-  width: 100%;
-  height: 100%;
-
-}
-
-.filters{
+.filters {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
 }
 
-select {
+.add-panel-btn {
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  transition: 0.2s all;
+}
+.add-panel-btn:hover {
+  background-color: #2b7a3c;
+}
+
+/* GRID */
+.grid-container {
+  display: grid;
+  gap: 20px;
+  width: 100%;
+  height: 83vh; /* Altura total del grid */
+}
+
+.panel-wrapper {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 1rem;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; 
+}
+
+.panel-header {
+  font-weight: bold;
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+  color: #fff;
+}
+
+.panel-dropdown {
+  width: 100%;
   padding: 6px 10px;
   border-radius: 6px;
-  border: 1px solid #ccc;
-}
-
-.form-select {
+  border: 1px solid #555;
   background-color: #2C2F48;
   color: #fff;
-  border: 1px solid #555;
 }
 
-.form-select option {
+.panel-content {
+  flex-grow: 1;
+  overflow: auto; 
+}
+
+.panel-dropdown option {
   background-color: #1C0A43;
   color: #fff;
 }
+
+.panel-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px; 
+}
+
+.panel-dropdown {
+  flex-grow: 1;
+}
+
+.dashboard-title {
+  display: flex;
+  align-items: center; /* centra verticalmente */
+  gap: 8px; /* espacio entre el h4 y el select */
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+
+.dashboard-title h4 {
+  margin: 0;
+  color: #fff;
+}
+
+.select-buque {
+  min-width: 160px; /* ancho adecuado */
+  padding: 9px 10px;
+  border-radius: 6px;
+  border: 1px solid #555;
+  background-color: #2C2F48;
+  color: #fff;
+  font-size: 0.95rem;
+}
+
+.select-buque option {
+  background-color: #1C0A43;
+  color: #fff;
+}
+
+
+
+

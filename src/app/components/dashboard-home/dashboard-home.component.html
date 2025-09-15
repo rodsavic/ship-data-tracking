@@ -1,30 +1,49 @@
 <section class="dashboard-container">
-    <app-header></app-header>
-    <app-aside-nav></app-aside-nav>
-    <main class="dashboard-content">
-        <div class="content-section">
-            <!-- Filtros -->
-            <div class="filters mb-3">
-                <div class="d-flex align-items-center gap-2">
-                    <select class="form-select" aria-label="Default select example">      
-                        <option *ngFor="let barco of buques" [value]="barco">{{ barco }}</option>
-                    </select>
-                </div>
+  <app-header></app-header>
+  <app-aside-nav></app-aside-nav>
 
-             <button class="btn btn-success">
-  <i class="fas fa-plus"></i> AGREGAR PANEL
-</button>
+  <main class="dashboard-content">
+    <div class="content-section">
+      <!-- Boton de agregar panel y seleccionar buque -->
+<div class="filters mb-3 d-flex align-items-center justify-content-between">
+  <div class="dashboard-title">
+    <select [(ngModel)]="buqueSeleccionado" class="form-select select-buque">
+      <option *ngFor="let barco of buques" [value]="barco">{{ barco }}</option>
+    </select>
+  </div>
 
-            </div>
-            <div class="grid-container">
-                <app-ship-tracking></app-ship-tracking>
-                <app-dashboard-temperature></app-dashboard-temperature>
-                <app-dashboard-nivel-tanque></app-dashboard-nivel-tanque>
-                <app-dashboard-gases-de-escape-nox></app-dashboard-gases-de-escape-nox>
-                <app-dashboard-gases-de-escape-sox></app-dashboard-gases-de-escape-sox>
-                <app-dashboard-camaras-buque></app-dashboard-camaras-buque>
-            </div>
+  <button class="btn btn-success add-panel-btn" (click)="agregarPanel()">
+    <i class="fas fa-plus"></i> AGREGAR PANEL
+  </button>
+</div>
+
+
+      <!-- GRID -->
+      <div class="grid-container"
+           [ngStyle]="{'grid-template-columns': getGridColumns(), 'grid-template-rows': getGridRows()}">
+        <div class="panel-wrapper" *ngFor="let panel of panels">
+
+          <!-- Dropdown y boton eliminar panel-->
+          <div class="panel-controls mb-2">
+            <select [(ngModel)]="panel.selected" class="form-select panel-dropdown">
+              <option [ngValue]="null">Seleccione un Indicador</option>
+              <option *ngFor="let tipo of tiposPaneles" [value]="tipo.id">{{ tipo.nombre }}</option>
+            </select>
+            <button class="btn btn-sm btn-danger" (click)="eliminarPanel(panel.id)">✖</button>
+          </div>
+
+          <!-- Paneles dinamicos -->
+          <div class="panel-content">
+            <app-ship-tracking *ngIf="panel.selected === 'ship-tracking'"></app-ship-tracking>
+            <app-dashboard-temperature *ngIf="panel.selected === 'dashboard-temperature'"></app-dashboard-temperature>
+            <app-dashboard-nivel-tanque *ngIf="panel.selected === 'dashboard-nivel-tanque'"></app-dashboard-nivel-tanque>
+            <app-dashboard-gases-de-escape-nox *ngIf="panel.selected === 'dashboard-gases-nox'"></app-dashboard-gases-de-escape-nox>
+            <app-dashboard-gases-de-escape-sox *ngIf="panel.selected === 'dashboard-gases-sox'"></app-dashboard-gases-de-escape-sox>
+            <app-dashboard-camaras-buque *ngIf="panel.selected === 'dashboard-camaras-buque'"></app-dashboard-camaras-buque>
+          </div>
         </div>
+      </div>
 
-    </main>
+    </div>
+  </main>
 </section>

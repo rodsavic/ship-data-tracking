@@ -18,7 +18,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'sensors-dashboard',
+    redirectTo: 'dashboard',
     pathMatch: 'full',
   },
 
